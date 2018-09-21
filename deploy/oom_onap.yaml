@@ -69,7 +69,7 @@ resources:
   my_onap:
     type: OS::Nova::Server
     properties:
-      name: OOM
+      name: OOM_LEARNING
       image: { get_param: image }
       flavor: { get_param: flavor }
       key_name: { get_param: key_name }
