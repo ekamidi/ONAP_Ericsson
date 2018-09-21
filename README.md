@@ -79,21 +79,24 @@ Create VM's on Openstack using below commands
 
 2) ONAP Cluster node 
 
-	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_Client" ONAP-Stack
+	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_eSON" ONAP-Stack-1
+	    
+	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_eSON" ONAP-Stack-2
 
   
-You can also create the stack at the Horizon Dashboard
+3) Configure the hostnames and /etc/hosts file ( Need to use sudo for all these tasks ) 
 
-Use the command 
+		. Update the hostname of VM's created by above openstack commands in /etc/hostname. ( There should be separete and unique hostnames for Rancher and ONAP worker nodes.
+		. Update the OAM IP and hostname mapping in /etc/hosts on all 3 VM's.
+		
+4) Use the below command to verify the newly created stacks from  Jump Server.
 
-	openstack stack list 
+		$ openstack stack list 
 
-to verify that the stack was created for the instance.
 
-Display:
+5 ) Execute nova list to view list virtual machine instances and obtain the virtual machine instance UUID for the virtul machine created by the heat stack template.
 
-Execute nova list to view list virtual machine instances and obtain the virtual machine instance UUID for the virtul machine created by the heat stack template.
-
+For Example:
         
     openstack stack show ONAP-stack | grep output_value
 
@@ -106,15 +109,18 @@ Full details:
 
 	openstack stack show ONAP-stack
 
-You can access by 
 
-	ssh ubuntu@<instance IP>
+6) Download the key-pair from the OpenStack Horizon dashboard and copy to Jump Server
 
-Execute below command to setup Rancher node:
+Access the VM's using below command :
+
+	ssh ubuntu@<instance IP> -i <key-pair-name>
+
+7) Execute below command to setup Rancher node:
 
 	sudo ansible-pull -U https://github.com/onap-ericsson/ONAP_Ericsson.git deploy/rancher.yml -vvv
 
-Execute below steps to create hosts using Rancher GUI:
+8) Execute below steps to create hosts using Rancher GUI:
 
 Access Rancher server via web browser
 	
