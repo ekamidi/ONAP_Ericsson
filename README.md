@@ -86,14 +86,13 @@ Create VM's on Openstack using below commands
   
 3) Configure the hostnames and /etc/hosts file ( Need to use sudo for all these tasks ) 
 
-	. Update the hostname of VM's created by above openstack commands in /etc/hostname. ( There should be separete and unique hostnames for Rancher and ONAP worker nodes.
+	3.1) Update the hostname of VM's created by above openstack commands in /etc/hostname. ( There should be separete and unique hostnames for Rancher and ONAP worker nodes.
 	
-	. Update the OAM IP and hostname mapping in /etc/hosts on all 3 VM's.
+	3.2) Update the OAM IP and hostname mapping in /etc/hosts on all 3 VM's.
 		
 4) Use the below command to verify the newly created stacks from  Jump Server.
 
 		$ openstack stack list 
-
 
 5 ) Execute nova list to view list virtual machine instances and obtain the virtual machine instance UUID for the virtul machine created by the heat stack template.
 
