@@ -86,8 +86,9 @@ Create VM's on Openstack using below commands
   
 3) Configure the hostnames and /etc/hosts file ( Need to use sudo for all these tasks ) 
 
-		. Update the hostname of VM's created by above openstack commands in /etc/hostname. ( There should be separete and unique hostnames for Rancher and ONAP worker nodes.
-		. Update the OAM IP and hostname mapping in /etc/hosts on all 3 VM's.
+	. Update the hostname of VM's created by above openstack commands in /etc/hostname. ( There should be separete and unique hostnames for Rancher and ONAP worker nodes.
+	
+	. Update the OAM IP and hostname mapping in /etc/hosts on all 3 VM's.
 		
 4) Use the below command to verify the newly created stacks from  Jump Server.
 
