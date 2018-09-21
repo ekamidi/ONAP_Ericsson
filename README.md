@@ -50,7 +50,7 @@ When you source the file and enter the password, environment variables are set f
 
 You can download the file from the OpenStack dashboard as an administrative user or any other user.
 
-Log in to the OpenStack dashboard, choose the project for which you want to download the OpenStack RC file, and click Access & Security.
+Log in to the OpenStack dashboard, choose the project for which you want to download the OpenStack RC file, and click  Access & Security.
 Click Download OpenStack RC File and save the file.
 
 Copy the openrc.sh file to the machine from where you want to run OpenStack commands.
