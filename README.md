@@ -65,7 +65,7 @@ In this example, we source the demo-openrc.sh file for the demo project:
 
 ## Clone GitHub repository on the JumpServer :
 
-	$ git clone https://github.com/onap-ericsson/ONAP_Ericsson.git
+	$rm -rf ONAP_Ericsson; git clone https://github.com/onap-ericsson/ONAP_Ericsson.git
   	$ cd ONAP_Ericsson/
 	
 
