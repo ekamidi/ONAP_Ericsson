@@ -43,11 +43,28 @@ openstack stack list
 =========================================
 ## ONAP Base Deployment
 
-Source your authentication credentials:
+## Download and source the OpenStack RC file
 
-Execute:
+To set the required environment variables for the OpenStack command-line clients, you must download and source an environment file, openrc.sh. It is project-specific and contains the credentials used by OpenStack Compute, Image, and Identity services.
+When you source the file and enter the password, environment variables are set for that shell. They allow the commands to communicate to the OpenStack services that run in the cloud.
 
-	$ source keystonerc
+You can download the file from the OpenStack dashboard as an administrative user or any other user.
+
+Log in to the OpenStack dashboard, choose the project for which you want to download the OpenStack RC file, and click Access & Security.
+Click Download OpenStack RC File and save the file.
+
+Copy the openrc.sh file to the machine from where you want to run OpenStack commands.
+
+For example, copy the file to the machine from where you want to upload an image with a glance client command.
+
+On any shell from where you want to run OpenStack commands, source the openrc.sh file for the respective project.
+
+In this example, we source the demo-openrc.sh file for the demo project:
+	
+	$ source demo-openrc.sh
+
+## Clone GitHub repository on the JumpServer :
+
 	$ git clone https://github.com/onap-ericsson/ONAP_Ericsson.git
   	$ cd ONAP_Ericsson/
 	
