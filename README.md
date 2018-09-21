@@ -83,7 +83,22 @@ Create VM's on Openstack using below commands
 	    
 	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_eSON" ONAP-Stack-2
 
-  
+ ## Update the security group
+ 
+ 	   $ openstack server list
+	   
+	   $ openstack server show <Server Name> # For Example: openstack server show ONAP_RANCHER_LEARNING
+	   
+Grab and add the ID of Security group onap_security_group, for example:
+
+	   $ openstack security group list
+	   
+	   $ openstack server add security group ONAP_RANCHER_LEARNING 0475a60d-0d0a-4e5b-91e9-b82f84b4a1e5
+	   
+Verify the security groups
+ 
+ 	   $ openstack server show ONAP_RANCHER_LEARNING |grep security_groups
+	   
 3) Configure the hostnames and /etc/hosts file ( Need to use sudo for all these tasks ) 
 
 	3.1) Update the hostname of VM's created by above openstack commands in /etc/hostname. ( There should be separete and unique hostnames for Rancher and ONAP worker nodes.
