@@ -75,29 +75,14 @@ Create VM's on Openstack using below commands
 
 1) Rancher ( Master node )
 
-	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=linux-medium" Rancher
+	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=linux-medium" --parameter "name=rancher" Rancher
 
 2) ONAP Cluster node 
 
-	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_eSON" ONAP-Stack-1
+	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_eSON" --parameter "name=onap-1" ONAP-Stack-1
 	    
-	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_eSON" ONAP-Stack-2
+	    $ openstack stack create -t deploy/oom_onap.yaml  --parameter "flavor=ONAP_eSON" --parameter "name=onap-2" ONAP-Stack-2
 
- ## Update the security group
- 
- 	   $ openstack server list
-	   
-	   $ openstack server show <Server Name> # For Example: openstack server show ONAP_RANCHER_LEARNING
-	   
-Grab and add the ID of Security group onap_security_group, for example:
-
-	   $ openstack security group list
-	   
-	   $ openstack server add security group ONAP_RANCHER_LEARNING 0475a60d-0d0a-4e5b-91e9-b82f84b4a1e5
-	   
-Verify the security groups
- 
- 	   $ openstack server show ONAP_RANCHER_LEARNING |grep security_groups
 	   
 3) Configure the hostnames and /etc/hosts file ( Need to use sudo for all these tasks ) 
 
@@ -134,8 +119,14 @@ Access the VM's using below command :
 7) Execute below command to setup Rancher node:
 
 	sudo ansible-pull -U https://github.com/onap-ericsson/ONAP_Ericsson.git deploy/rancher.yml -vvv
+	
+8) Execute below command to setup ONAP Worker node ( repeat same command on other ONAP cluster node ):
 
-8) Execute below steps to create hosts using Rancher GUI:
+	sudo ansible-pull -U https://github.com/onap-ericsson/ONAP_Ericsson.git  deploy/onap_worker.yml -vvv
+
+Wait for the script to complete.
+
+9) Execute below steps to create hosts using Rancher GUI:
 
 Access Rancher server via web browser
 	
@@ -159,12 +150,6 @@ Add Kubernetes Host
 	1. Run Kubernetes host sudo script on K8 instance
 	2. K8 is installed by Rancher. See host progress in Rancher - INFRASTRUCTURE - Hosts.
 	3. Monitor install progress by clicking on Kubernetes menu option. When you see >_CLI the K8 master is up
-
-Execute below command to setup ONAP Worker node ( repeat same command on other ONAP cluster node ):
-
-	sudo ansible-pull -U https://github.com/onap-ericsson/ONAP_Ericsson.git  deploy/onap_worker.yml -vvv
-
-Wait for the script to complete.
 
 
 Login to the new Kubernetes Host:
