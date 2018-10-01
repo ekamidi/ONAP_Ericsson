@@ -187,25 +187,6 @@ Validate helm is running at the right version. If not, an error like this will b
 	Error: incompatible versions c1ient[v2.9.1] server[v2.6.1]
 	ubuntu@sb4-k8s-1:~$
 
-Upgrade the server-side component of helm (tiller) via helm init –upgrade:
-
-	ubuntu@sb4-k8s-1:~$ helm init --upgrade
-	Creating /home/ubuntu/.helm
-	Creating /home/ubuntu/.helm/repository
-	Creating /home/ubuntu/.helm/repository/cache
-	Creating /home/ubuntu/.helm/repository/local
-	Creating /home/ubuntu/.helm/plugins
-	Creating /home/ubuntu/.helm/starters
-	Creating /home/ubuntu/.helm/cache/archive
-	Creating /home/ubuntu/.helm/repository/repositories.yaml
-	Adding stable repo with URL: https://kubernetes-charts.storage.googleapis.com
-	Adding local repo with URL: http://127.0.0.1:8879/charts
-	$HELM_HOME has been configured at /home/ubuntu/.helm.
-
-	Tiller (the Helm server-side component) has been upgraded to the current version.
-	Happy Helming!
-	ubuntu@sb4-k8s-1:~$
-
 
 It shows the status of the charts and associated Pods and Containers
 
