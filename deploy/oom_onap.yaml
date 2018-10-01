@@ -1,4 +1,4 @@
-heat_template_version: 2018-01-10
+heat_template_version: 2013-05-23
 
 description:  OOM Template
 
