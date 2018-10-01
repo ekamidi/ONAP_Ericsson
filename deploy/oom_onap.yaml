@@ -1,4 +1,4 @@
-heat_template_version: 2013-05-23
+heat_template_version: 2018-01-10
 
 description:  OOM Template
 
@@ -11,6 +11,18 @@ parameters:
     type: string
     description: Instance type for OOM
     default: ONAP_FSB
+  nodename:
+    type: string
+    description: nodename of the node
+    default: oom
+  name:
+    type: string
+    description: instance name
+    default: ONAP
+  security_group_id:
+    type: string
+    description: ID of security group for this instance port
+    default: onap
   image:
     type: string
     default: ubuntu1604
@@ -69,13 +81,14 @@ resources:
   my_onap:
     type: OS::Nova::Server
     properties:
-      name: OOM_LEARNING
+      name: { get_param: name }
       image: { get_param: image }
       flavor: { get_param: flavor }
       key_name: { get_param: key_name }
       config_drive: 'True'
 #      block_device_mapping: [{volume_id: { get_param: fsb2_cinder_vol }, device_name: vda}]
- #     security_groups:
+      security_groups:
+        - { get_param: security_group_id }
  #       - { get_resource: onap_security_group }
       networks:
         - network: {get_param: net1}
@@ -88,6 +101,7 @@ resources:
             __PROXY_LAB__: { get_param: PROXY_LAB }
             __DNS_LAB__: { get_param: DNS_LAB }
             __DNS_SEARCH__: { get_param: DNS_SEARCH }
+            __nodename__: { get_param: nodename }
           template: |
             #!/bin/bash -ex
             sudo sh -c 'echo search __DNS_SEARCH__ >> /etc/resolv.conf'
@@ -103,9 +117,9 @@ resources:
             sudo sh -c 'echo HTTP_PROXY=__PROXY_LAB__ >> /etc/environment'
             sudo sh -c 'echo HTTPS_PROXY=__PROXY_LAB__ >> /etc/environment'
             # Add OOM Resolution
-            #sudo myIP=$(ifconfig -a ens3 | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n 1 )
-            #sudo myhostname=oom
-            #sudo sh -c 'echo $myIP $myhostname >> /etc/hosts'
+            sudo myIP=$(ifconfig -a ens3 | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n 1 )
+            sudo mynodename=__nodename__
+            sudo sh -c 'echo $myIP $mynodename >> /etc/hosts'
             # Clone Main Repository
             git clone https://github.com/onap-ericsson/ONAP_Ericsson /home/ubuntu/ONAP_Ericsson
             sudo chown ubuntu:ubuntu /home/ubuntu/ONAP_Ericsson
