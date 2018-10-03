@@ -10,7 +10,7 @@
   shell: helm init
 
 - name: sleep for 30 seconds and continue with play
-  wait_for: timeout=180
+  wait_for: timeout=60
   delegate_to: localhost
 
 - name: Collect Helm Charts
@@ -34,8 +34,8 @@
 - name: Add local Helm Repo for Charts
   shell: sudo helm repo add local http://127.0.0.1:8879
 
-- name: Remove Default Helm Repo
-  shell: sudo helm repo remove stable
+#- name: Remove Default Helm Repo
+#  shell: sudo helm repo remove stable
 
 - name: Helm List Repo
   shell: sudo helm repo list
@@ -59,7 +59,7 @@
 
 
 - name: sleep for 180 seconds before continue with ONAP Deployment
-  wait_for: timeout=180
+  wait_for: timeout=60
   delegate_to: localhost
 
 - name: Deploying ONAP Helm
