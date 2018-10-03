@@ -78,7 +78,7 @@ cli:
 consul:
   enabled: true
 dcaegen2:
-  enabled: false
+  enabled: true
 dmaap:
   enabled: true
 esr:
