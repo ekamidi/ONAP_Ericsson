@@ -134,7 +134,6 @@ resources:
             sudo sh -c 'echo "localhost ansible_connection=local" >> /etc/ansible/hosts'
             sudo sh -c 'sed -i -e 's/#log_path/log_path/g' /etc/ansible/ansible.cfg'
             #sudo sh -c 'echo "log_path = /var/log/ansible.log" >> /etc/ansible/ansible.cfg'
-
             # Launch Installer
             #echo "#!/bin/bash -ex" >> /home/ubuntu/runme.sh
             #echo "sudo ansible-pull -U __AnsibleRepository__ -e config=__OOMTemplate__ __AnsiblePlaybook__ -vvvv" >> /home/ubuntu/runme.sh
