@@ -30,23 +30,23 @@
     state: directory
     mode: "u=rwx,g=wx,o=rwx"
 
-#- name: Configure HTTP Proxy for Docker
-#  become: true  
-#  copy:
-#    src: http-proxy.conf
-#    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
-#    owner: root
-#    group: root
-#    mode: 0777
+- name: Configure HTTP Proxy for Docker
+  become: true  
+  copy:
+    src: http-proxy.conf
+    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+    owner: root
+    group: root
+    mode: 0777
 
-#- name: Configure HTTPS Proxy for Docker
-#  become: true  
-#  copy:
-#    src: https-proxy.conf
-#    dest: /etc/systemd/system/docker.service.d/https-proxy.conf
-#    owner: root
-#    group: root
-#    mode: 0777
+- name: Configure HTTPS Proxy for Docker
+  become: true  
+  copy:
+    src: https-proxy.conf
+    dest: /etc/systemd/system/docker.service.d/https-proxy.conf
+    owner: root
+    group: root
+    mode: 0777
 
 - name: Install docker for python
   pip:
