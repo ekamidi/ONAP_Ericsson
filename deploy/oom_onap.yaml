@@ -107,18 +107,18 @@ resources:
             touch /var/test.txt
             sudo sh -c 'echo search __DNS_SEARCH__ >> /etc/resolv.conf'
             sudo sh -c 'echo nameserver __DNS_LAB__ >> /etc/resolv.conf'
-            export http_proxy=__PROXY_LAB__
-            export https_proxy=__PROXY_LAB__
+            #export http_proxy=__PROXY_LAB__
+            #export https_proxy=__PROXY_LAB__
             echo "1" >>  /var/test.txt
             #export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
-            export HTTP_PROXY=__PROXY_LAB__
-            export HTTPS_PROXY=__PROXY_LAB__
+            #export HTTP_PROXY=__PROXY_LAB__
+            #export HTTPS_PROXY=__PROXY_LAB__
             echo "2" >> /var/test.txt
             #NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"
-            sudo sh -c 'echo http_proxy=__PROXY_LAB__ >> /etc/environment'
-            sudo sh -c 'echo https_proxy=__PROXY_LAB__ >> /etc/environment'
-            sudo sh -c 'echo HTTP_PROXY=__PROXY_LAB__ >> /etc/environment'
-            sudo sh -c 'echo HTTPS_PROXY=__PROXY_LAB__ >> /etc/environment'
+            #sudo sh -c 'echo http_proxy=__PROXY_LAB__ >> /etc/environment'
+            #sudo sh -c 'echo https_proxy=__PROXY_LAB__ >> /etc/environment'
+            #sudo sh -c 'echo HTTP_PROXY=__PROXY_LAB__ >> /etc/environment'
+            #sudo sh -c 'echo HTTPS_PROXY=__PROXY_LAB__ >> /etc/environment'
             echo "3" >> /var/test.txt
             # Add OOM Resolution
             # Clone Main Repository
